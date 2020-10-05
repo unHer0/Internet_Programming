@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function load() {
+            var xhr = new XMLHttpRequest();
+            //xhr.open("POST", "https://localhost:44325/getposthandler?x=2&y=3", true);
+            xhr.open("POST", "http://172.16.193.234:10203/lab1-a/getposthandler?x=2&y=3", true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    document.getElementById('str').innerHTML = xhr.responseText;
+                };
+            };
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <p><b>GetPostPage</b></p>
+    <div>
+        <form method="post" action="#">
+            <p>
+                <label for="x">X = </label>
+                <input type="text" name="x" />
+            </p>
+            <p>
+                <label for="y">Y = </label>
+                <input type="text" name="y" />
+            </p>
+            <p><input type="submit" value="Send" /></p>
+        </form>
+    </div>
+    <div style="margin: 5px 0px 5px 5px">
+        <input type="button" onclick="load()" value="Load"/>
+        <p id="str"></p>
+    </div>
+</body>
+</html>
